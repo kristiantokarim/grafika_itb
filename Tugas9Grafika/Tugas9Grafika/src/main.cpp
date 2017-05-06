@@ -19,8 +19,12 @@ static int dZ = 180;
 static float lX = 0.0f;
 static float lY = 0.0f;
 static float lZ = -1.0f;
+static float x = 0.0f;
+static float y = 0.0f;
+static float z = -20.0f;
 
-static int z = -20;
+static int prevMouseX;
+static int prevMouseY;
 GLuint texture[6];
 
 /* GLUT callback Handlers */
@@ -452,16 +456,19 @@ static void printBuilding(Building building, int h) {
         }
     glEnd();
     for (int i = 0 ; i < building.pointsLength ; i++) {
+        glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, texture[2]);
         glBegin(GL_POLYGON);
-            glTexCoord3f(building.points[i].x, building.points[i].y, building.points[i].z);
+            glTexCoord3f(0.0, 1.0, 0.0);
             glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z);
-            glTexCoord3f(building.points[(i+1)%building.pointsLength].x, building.points[(i+1)%building.pointsLength].y, building.points[(i+1)%building.pointsLength].z);
+            glTexCoord3f(1.0, 1.0, 0.0);
             glVertex3f(building.points[(i+1)%building.pointsLength].x, building.points[(i+1)%building.pointsLength].y, building.points[(i+1)%building.pointsLength].z);
-            glTexCoord3f(building.points[(i+1)%building.pointsLength].x, building.points[(i+1)%building.pointsLength].y, building.points[(i+1)%building.pointsLength].z+h);
+            glTexCoord3f(1.0, 0.0, 0.0);
             glVertex3f(building.points[(i+1)%building.pointsLength].x, building.points[(i+1)%building.pointsLength].y, building.points[(i+1)%building.pointsLength].z+h);
-            glTexCoord3f(building.points[i].x, building.points[i].y, building.points[i].z+h);
+            glTexCoord3f(0.0, 0.0, 0.0);
             glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z+h);
         glEnd();
+        glDisable(GL_TEXTURE_2D);
     }
     glBegin(GL_POLYGON);
         for (int i = 0 ; i < building.pointsLength ; i++) {
@@ -477,9 +484,9 @@ static void display(void)
     glMatrixMode(GL_MODELVIEW);
 
     glLoadIdentity();
-    glTranslated(-5, 15, z);
+    glTranslated(x, y, z);
     glRotated(dX, 1, 0, 0);
-    glRotated(dY, 0, 1, 0);
+    glRotated(dY+180, 0, 1, 0);
     glRotated(dZ, 0, 0, 1);
 
     GLfloat light_position[] = { lX, lY, lZ, 1.0f };
@@ -521,6 +528,20 @@ static void display(void)
     glutSwapBuffers();
 }
 
+static void mouse(int button, int state, int mouseX, int mouseY)
+{
+    if ((button == GLUT_LEFT_BUTTON || button == GLUT_RIGHT_BUTTON))
+    {
+         prevMouseX = mouseX;
+         prevMouseY = mouseY;
+    }
+}
+
+static void mouseMov(int mouseX, int mouseY)
+{
+    x += (float)(mouseX - prevMouseX) / 1500.0f;
+    y += (float)(mouseY - prevMouseY) * -1 / 1500.0f;
+}
 
 static void key(unsigned char key, int x, int y)
 {
@@ -610,11 +631,13 @@ int main(int argc, char *argv[])
 
     glutCreateWindow("Xiaomi Mi4i");
 
-    //initGL();
+    initGL();
 
     glutReshapeFunc(resize);
     glutDisplayFunc(display);
     glutKeyboardFunc(key);
+    glutMouseFunc(mouse);
+    glutMotionFunc(mouseMov);
     glutIdleFunc(idle);
 
     glutMainLoop();
