@@ -529,7 +529,7 @@
 
 1494073980 c:\users\user-ari\desktop\grafika_itb\tugas9grafika\tugas9grafika\src\stbi_dds_aug_c.h
 
-1494075781 source:c:\users\user-ari\desktop\grafika_itb\tugas9grafika\tugas9grafika\src\main.cpp
+1494078968 source:c:\users\user-ari\desktop\grafika_itb\tugas9grafika\tugas9grafika\src\main.cpp
 	<GLUT/glut.h>
 	<GL/glut.h>
 	<iostream>
@@ -537,6 +537,7 @@
 	"SOIL.h"
 	"GLFW/glfw3.h"
 	"GLFW/glfw3native.h"
+	<string>
 
 1471503160 c:\users\user-ari\desktop\grafika_itb\tugas9grafika\tugas9grafika\src\glfw\glfw3.h
 	<stddef.h>

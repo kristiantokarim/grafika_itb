@@ -479,6 +479,104 @@ static void printBuilding(Building building, int h) {
     glEnd();
 }
 
+void displayLabtekV(Building building,int h){
+    GLuint this_texture[6];
+    this_texture[0] = SOIL_load_OGL_texture (
+        (PATH+"img\\labtek56\\timur.png").c_str(),
+        SOIL_LOAD_AUTO,
+        SOIL_CREATE_NEW_ID,
+        SOIL_FLAG_MIPMAPS | SOIL_FLAG_POWER_OF_TWO | SOIL_FLAG_DDS_LOAD_DIRECT
+    );
+    this_texture[1] = SOIL_load_OGL_texture (
+        (PATH+"img\\labtek56\\utara1.png").c_str(),
+        SOIL_LOAD_AUTO,
+        SOIL_CREATE_NEW_ID,
+        SOIL_FLAG_MIPMAPS | SOIL_FLAG_POWER_OF_TWO | SOIL_FLAG_DDS_LOAD_DIRECT
+    );
+    cout << SOIL_last_result() << endl;
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture[0]);
+
+    glBegin(GL_POLYGON);
+        for (int i = 0 ; i < building.pointsLength ; i++) {
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z);
+        }
+    glEnd();
+    for (int i = 0 ; i < building.pointsLength ; i++) {
+        glEnable(GL_TEXTURE_2D);
+        if ( i  == 0 ||i == 3){
+          glBindTexture(GL_TEXTURE_2D, this_texture[0]);
+        } else {
+            glBindTexture(GL_TEXTURE_2D, this_texture[1]);
+        }
+        glBegin(GL_POLYGON);
+            glTexCoord3f(0.0, 1.0, 0.0);
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z);
+            glTexCoord3f(1.0, 1.0, 0.0);
+            glVertex3f(building.points[(i+1)%building.pointsLength].x, building.points[(i+1)%building.pointsLength].y, building.points[(i+1)%building.pointsLength].z);
+            glTexCoord3f(1.0, 0.0, 0.0);
+            glVertex3f(building.points[(i+1)%building.pointsLength].x, building.points[(i+1)%building.pointsLength].y, building.points[(i+1)%building.pointsLength].z+h);
+            glTexCoord3f(0.0, 0.0, 0.0);
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z+h);
+        glEnd();
+        glDisable(GL_TEXTURE_2D);
+    }
+    glBegin(GL_POLYGON);
+        for (int i = 0 ; i < building.pointsLength ; i++) {
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z+h);
+        }
+    glEnd();
+}
+
+void displayLabtekVI(Building building,int h){
+    GLuint this_texture[6];
+    this_texture[0] = SOIL_load_OGL_texture (
+        (PATH+"img\\labtek56\\timur.png").c_str(),
+        SOIL_LOAD_AUTO,
+        SOIL_CREATE_NEW_ID,
+        SOIL_FLAG_MIPMAPS | SOIL_FLAG_POWER_OF_TWO | SOIL_FLAG_DDS_LOAD_DIRECT
+    );
+    this_texture[1] = SOIL_load_OGL_texture (
+        (PATH+"img\\labtek56\\utara1.png").c_str(),
+        SOIL_LOAD_AUTO,
+        SOIL_CREATE_NEW_ID,
+        SOIL_FLAG_MIPMAPS | SOIL_FLAG_POWER_OF_TWO | SOIL_FLAG_DDS_LOAD_DIRECT
+    );
+    cout << SOIL_last_result() << endl;
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture[0]);
+
+    glBegin(GL_POLYGON);
+        for (int i = 0 ; i < building.pointsLength ; i++) {
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z);
+        }
+    glEnd();
+    for (int i = 0 ; i < building.pointsLength ; i++) {
+        glEnable(GL_TEXTURE_2D);
+        if ( i  == 0 ||i == 3){
+          glBindTexture(GL_TEXTURE_2D, this_texture[0]);
+        } else {
+            glBindTexture(GL_TEXTURE_2D, this_texture[1]);
+        }
+        glBegin(GL_POLYGON);
+            glTexCoord3f(0.0, 1.0, 0.0);
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z);
+            glTexCoord3f(1.0, 1.0, 0.0);
+            glVertex3f(building.points[(i+1)%building.pointsLength].x, building.points[(i+1)%building.pointsLength].y, building.points[(i+1)%building.pointsLength].z);
+            glTexCoord3f(1.0, 0.0, 0.0);
+            glVertex3f(building.points[(i+1)%building.pointsLength].x, building.points[(i+1)%building.pointsLength].y, building.points[(i+1)%building.pointsLength].z+h);
+            glTexCoord3f(0.0, 0.0, 0.0);
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z+h);
+        glEnd();
+        glDisable(GL_TEXTURE_2D);
+    }
+    glBegin(GL_POLYGON);
+        for (int i = 0 ; i < building.pointsLength ; i++) {
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z+h);
+        }
+    glEnd();
+}
+
 static void display(void)
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -494,9 +592,10 @@ static void display(void)
     GLfloat light_position[] = { lX, lY, lZ, 1.0f };
     glLightfv(GL_LIGHT0, GL_POSITION, light_position);
 
-    printBuilding(labtekV,2);
-    printBuilding(labtekVI,2);
-    printBuilding(labtekVII,2);
+    //printBuilding(labtekV,2);
+    displayLabtekV(labtekV,2);
+    displayLabtekVI(labtekVI,2);
+    /*printBuilding(labtekVII,2);
     printBuilding(labtekVIII,2);
     printBuilding(comlabs,3);
     printBuilding(mekTan,4);
@@ -526,7 +625,7 @@ static void display(void)
     printBuilding(gkutimur,2);
     printBuilding(fttm,2);
     printBuilding(amisca,2);
-    printBuilding(doping,2);
+    printBuilding(doping,2);*/
     glutSwapBuffers();
 }
 
