@@ -7,8 +7,9 @@
 #include <iostream>
 #include <stdlib.h>
 #include "SOIL.h"
-#include <GLFW/glfw3.h>
-#include <GLFW/glfw3native.h>
+#include "GLFW/glfw3.h"
+#include "GLFW/glfw3native.h"
+#include <string>
 
 using namespace std;
 
@@ -26,6 +27,7 @@ static float z = -20.0f;
 static int prevMouseX;
 static int prevMouseY;
 GLuint texture[6];
+string PATH = "C:\\Users\\user-ari\\Desktop\\grafika_itb\\Tugas9Grafika\\Tugas9Grafika\\src\\";
 
 /* GLUT callback Handlers */
 
@@ -367,7 +369,7 @@ Building atasnyabengkok2(1,{
                 });
 void initGL() {
     texture[0] = SOIL_load_OGL_texture (
-        "C:\\Users\\Kristianto\\Desktop\\Tugas9Grafika\\Tugas9Grafika\\src\\img\\top.png",
+        (PATH+"img\\top.png").c_str(),
         SOIL_LOAD_AUTO,
         SOIL_CREATE_NEW_ID,
         SOIL_FLAG_MIPMAPS | SOIL_FLAG_POWER_OF_TWO | SOIL_FLAG_DDS_LOAD_DIRECT
@@ -376,7 +378,7 @@ void initGL() {
     glBindTexture(GL_TEXTURE_2D, texture[0]);
 
     texture[1] = SOIL_load_OGL_texture (
-        "C:\\Users\\Kristianto\\Desktop\\Tugas9Grafika\\Tugas9Grafika\\src\\img\\bottom.png",
+        (PATH+"img\\bottom.png").c_str(),
         SOIL_LOAD_AUTO,
         SOIL_CREATE_NEW_ID,
         SOIL_FLAG_MIPMAPS | SOIL_FLAG_POWER_OF_TWO | SOIL_FLAG_DDS_LOAD_DIRECT
@@ -385,7 +387,7 @@ void initGL() {
     glBindTexture(GL_TEXTURE_2D, texture[1]);
 
     texture[2] = SOIL_load_OGL_texture (
-        "C:\\Users\\Kristianto\\Desktop\\Tugas9Grafika\\Tugas9Grafika\\src\\img\\front.png",
+        (PATH+"img\\front.png").c_str(),
         SOIL_LOAD_AUTO,
         SOIL_CREATE_NEW_ID,
         SOIL_FLAG_MIPMAPS | SOIL_FLAG_POWER_OF_TWO | SOIL_FLAG_DDS_LOAD_DIRECT
@@ -394,7 +396,7 @@ void initGL() {
     glBindTexture(GL_TEXTURE_2D, texture[2]);
 
     texture[3] = SOIL_load_OGL_texture (
-        "C:\\Users\\Kristianto\\Desktop\\Tugas9Grafika\\Tugas9Grafika\\src\\img\\back.png",
+        (PATH+"img\\back.png").c_str(),
         SOIL_LOAD_AUTO,
         SOIL_CREATE_NEW_ID,
         SOIL_FLAG_MIPMAPS | SOIL_FLAG_POWER_OF_TWO | SOIL_FLAG_DDS_LOAD_DIRECT
@@ -403,7 +405,7 @@ void initGL() {
     glBindTexture(GL_TEXTURE_2D, texture[3]);
 
     texture[4] = SOIL_load_OGL_texture (
-        "C:\\Users\\Kristianto\\Desktop\\Tugas9Grafika\\Tugas9Grafika\\src\\img\\left.png",
+        (PATH+"img\\left.png").c_str(),
         SOIL_LOAD_AUTO,
         SOIL_CREATE_NEW_ID,
         SOIL_FLAG_MIPMAPS | SOIL_FLAG_POWER_OF_TWO | SOIL_FLAG_DDS_LOAD_DIRECT
@@ -412,7 +414,7 @@ void initGL() {
     glBindTexture(GL_TEXTURE_2D, texture[4]);
 
     texture[5] = SOIL_load_OGL_texture (
-        "C:\\Users\\Kristianto\\Desktop\\Tugas9Grafika\\Tugas9Grafika\\src\\img\\right.png",
+        (PATH+"img\\right.png").c_str(),
         SOIL_LOAD_AUTO,
         SOIL_CREATE_NEW_ID,
         SOIL_FLAG_MIPMAPS | SOIL_FLAG_POWER_OF_TWO | SOIL_FLAG_DDS_LOAD_DIRECT
