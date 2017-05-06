@@ -7,8 +7,23 @@
 #include <iostream>
 #include <stdlib.h>
 #include "SOIL.h"
+#include <GLFW/glfw3.h>
+#include <GLFW/glfw3native.h>
 
 using namespace std;
+
+static int dX = 0;
+static int dY = 180;
+static int dZ = 180;
+
+static float lX = 0.0f;
+static float lY = 0.0f;
+static float lZ = -1.0f;
+
+static int z = -20;
+GLuint texture[6];
+
+/* GLUT callback Handlers */
 
 class Point {
     public:
@@ -34,7 +49,6 @@ class Building {
         }
 };
 
-/* GLUT callback Handlers */
 Building labtekV(1,{
                  {5.14,14.82,0},
                  {7.58,14.82,0},
@@ -347,60 +361,58 @@ Building atasnyabengkok2(1,{
                 {12.85,12.88,0},
                 {12.85,12.69,0}
                 });
-
-Building Perpus(1,{
-                {8.26,8.55,0},
-                {8.40,8.44,0},
-                {9.02,8.40,0},
-                {9.19,8.62,0},
-                {9.19,9,62,0},
-                {8.26,9,62,0}
-                });
-
-Building Plano(1,{
-                {9.89,17.80,0},
-                {9.89,16.30,0},
-                {10.90,16.30,0},
-                {10.90,17.80,0}
-                });
-
-Building IMA-G(1,{
-                {11.14,17.50,0},
-                {11.14,16.30,0},
-                {12.16,16.30,0},
-                {12.16,17.50,0}
-                });
-
-Building SR(1,{
-                {10.35,18.73,0},
-                {10.35,17.80,0},
-                {11.54,17.80,0},
-                {11.54,18.73,0}
-                });
-static int dX = 0;
-static int dY = 180;
-static int dZ = 180;
-
-static float lX = 0.0f;
-static float lY = 0.0f;
-static float lZ = -1.0f;
-
-static int z = -50;
-static int y = 10;
-static int x = -10;
-GLuint texture[6];
-
-
-
 void initGL() {
     texture[0] = SOIL_load_OGL_texture (
-        "C:\\Users\\Kristianto\\Desktop\\Tugads9Grafika\\Tugas9Grafika\\src\\img\\top.png",
+        "C:\\Users\\Kristianto\\Desktop\\Tugas9Grafika\\Tugas9Grafika\\src\\img\\top.png",
         SOIL_LOAD_AUTO,
         SOIL_CREATE_NEW_ID,
         SOIL_FLAG_MIPMAPS | SOIL_FLAG_POWER_OF_TWO | SOIL_FLAG_DDS_LOAD_DIRECT
     );
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texture[0]);
+
+    texture[1] = SOIL_load_OGL_texture (
+        "C:\\Users\\Kristianto\\Desktop\\Tugas9Grafika\\Tugas9Grafika\\src\\img\\bottom.png",
+        SOIL_LOAD_AUTO,
+        SOIL_CREATE_NEW_ID,
+        SOIL_FLAG_MIPMAPS | SOIL_FLAG_POWER_OF_TWO | SOIL_FLAG_DDS_LOAD_DIRECT
+    );
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture[1]);
+
+    texture[2] = SOIL_load_OGL_texture (
+        "C:\\Users\\Kristianto\\Desktop\\Tugas9Grafika\\Tugas9Grafika\\src\\img\\front.png",
+        SOIL_LOAD_AUTO,
+        SOIL_CREATE_NEW_ID,
+        SOIL_FLAG_MIPMAPS | SOIL_FLAG_POWER_OF_TWO | SOIL_FLAG_DDS_LOAD_DIRECT
+    );
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture[2]);
+
+    texture[3] = SOIL_load_OGL_texture (
+        "C:\\Users\\Kristianto\\Desktop\\Tugas9Grafika\\Tugas9Grafika\\src\\img\\back.png",
+        SOIL_LOAD_AUTO,
+        SOIL_CREATE_NEW_ID,
+        SOIL_FLAG_MIPMAPS | SOIL_FLAG_POWER_OF_TWO | SOIL_FLAG_DDS_LOAD_DIRECT
+    );
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture[3]);
+
+    texture[4] = SOIL_load_OGL_texture (
+        "C:\\Users\\Kristianto\\Desktop\\Tugas9Grafika\\Tugas9Grafika\\src\\img\\left.png",
+        SOIL_LOAD_AUTO,
+        SOIL_CREATE_NEW_ID,
+        SOIL_FLAG_MIPMAPS | SOIL_FLAG_POWER_OF_TWO | SOIL_FLAG_DDS_LOAD_DIRECT
+    );
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture[4]);
+
+    texture[5] = SOIL_load_OGL_texture (
+        "C:\\Users\\Kristianto\\Desktop\\Tugas9Grafika\\Tugas9Grafika\\src\\img\\right.png",
+        SOIL_LOAD_AUTO,
+        SOIL_CREATE_NEW_ID,
+        SOIL_FLAG_MIPMAPS | SOIL_FLAG_POWER_OF_TWO | SOIL_FLAG_DDS_LOAD_DIRECT
+    );
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texture[5]);
 
@@ -433,11 +445,27 @@ static void resize(int width, int height)
     glFrustum(-ar, ar, -1.0, 1.0, 2.0, 100.0);
 }
 
-static void printBuilding(Building building) {
+static void printBuilding(Building building, int h) {
     glBegin(GL_POLYGON);
-        glColor3f(1.0,1.0,1.0);
         for (int i = 0 ; i < building.pointsLength ; i++) {
             glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z);
+        }
+    glEnd();
+    for (int i = 0 ; i < building.pointsLength ; i++) {
+        glBegin(GL_POLYGON);
+            glTexCoord3f(building.points[i].x, building.points[i].y, building.points[i].z);
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z);
+            glTexCoord3f(building.points[(i+1)%building.pointsLength].x, building.points[(i+1)%building.pointsLength].y, building.points[(i+1)%building.pointsLength].z);
+            glVertex3f(building.points[(i+1)%building.pointsLength].x, building.points[(i+1)%building.pointsLength].y, building.points[(i+1)%building.pointsLength].z);
+            glTexCoord3f(building.points[(i+1)%building.pointsLength].x, building.points[(i+1)%building.pointsLength].y, building.points[(i+1)%building.pointsLength].z+h);
+            glVertex3f(building.points[(i+1)%building.pointsLength].x, building.points[(i+1)%building.pointsLength].y, building.points[(i+1)%building.pointsLength].z+h);
+            glTexCoord3f(building.points[i].x, building.points[i].y, building.points[i].z+h);
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z+h);
+        glEnd();
+    }
+    glBegin(GL_POLYGON);
+        for (int i = 0 ; i < building.pointsLength ; i++) {
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z+h);
         }
     glEnd();
 }
@@ -449,7 +477,7 @@ static void display(void)
     glMatrixMode(GL_MODELVIEW);
 
     glLoadIdentity();
-    glTranslated(x, y, z);
+    glTranslated(-5, 15, z);
     glRotated(dX, 1, 0, 0);
     glRotated(dY, 0, 1, 0);
     glRotated(dZ, 0, 0, 1);
@@ -457,13 +485,39 @@ static void display(void)
     GLfloat light_position[] = { lX, lY, lZ, 1.0f };
     glLightfv(GL_LIGHT0, GL_POSITION, light_position);
 
-    printBuilding(labtekV);
-    printBuilding(labtekVI);
-    printBuilding(labtekVII);
-    printBuilding(labtekVIII);
-    printBuilding(labPower);
-    printBuilding(ccBarat);
-    printBuilding(ccTimur);
+    printBuilding(labtekV,2);
+    printBuilding(labtekVI,2);
+    printBuilding(labtekVII,2);
+    printBuilding(labtekVIII,2);
+    printBuilding(comlabs,3);
+    printBuilding(mekTan,4);
+    printBuilding(ccBarat,5);
+    printBuilding(ccTimur,6);
+    printBuilding(hmtl,2);
+    printBuilding(pln,2);
+    printBuilding(tvst,3);
+    printBuilding(oktagon,3);
+    printBuilding(gkuBarat,4);
+    printBuilding(pau,3);
+    printBuilding(altim,2);
+    printBuilding(albar,2);
+    printBuilding(atasnyabengkok2,3);
+    printBuilding(bengkok2,2);
+    printBuilding(bengkok1,2);
+    printBuilding(labbiratas,3);
+    printBuilding(labbirbawah,3);
+    printBuilding(depanaltim,2);
+    printBuilding(cadl,2);
+    printBuilding(labmetalurgi,2);
+    printBuilding(hmsutara2,2);
+    printBuilding(hmsutara1,2);
+    printBuilding(hmsselatan,2);
+    printBuilding(hms,2);
+    printBuilding(doping,2);
+    printBuilding(gkutimur,2);
+    printBuilding(fttm,2);
+    printBuilding(amisca,2);
+    printBuilding(doping,2);
     glutSwapBuffers();
 }
 
@@ -550,8 +604,8 @@ static void idle(void)
 int main(int argc, char *argv[])
 {
     glutInit(&argc, argv);
-    glutInitWindowSize(1366, 768);
-    glutInitWindowPosition(0, 0);
+    glutInitWindowSize(640, 480);
+    glutInitWindowPosition(50, 50);
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
 
     glutCreateWindow("Xiaomi Mi4i");

@@ -379,23 +379,39 @@
 
 1215494008 c:\users\kristianto\desktop\tugas9grafika\tugas9grafika\src\stbi_dds_aug_c.h
 
+<<<<<<< HEAD
 1494052618 source:c:\users\adesu\desktop\grafika\grafika_itb\tugas9grafika\tugas9grafika\src\image_dxt.c
+=======
+1215494008 source:c:\users\kristianto\desktop\grafika_itb\tugas9grafika\tugas9grafika\src\image_dxt.c
+>>>>>>> d508d0ad1dd80eacddc1ee755f3e53c3d9f65f78
 	"image_DXT.h"
 	<math.h>
 	<stdlib.h>
 	<string.h>
 	<stdio.h>
 
+<<<<<<< HEAD
 1494052618 c:\users\adesu\desktop\grafika\grafika_itb\tugas9grafika\tugas9grafika\src\image_dxt.h
 
 1494052618 source:c:\users\adesu\desktop\grafika\grafika_itb\tugas9grafika\tugas9grafika\src\image_helper.c
+=======
+1215494008 c:\users\kristianto\desktop\grafika_itb\tugas9grafika\tugas9grafika\src\image_dxt.h
+
+1215494008 source:c:\users\kristianto\desktop\grafika_itb\tugas9grafika\tugas9grafika\src\image_helper.c
+>>>>>>> d508d0ad1dd80eacddc1ee755f3e53c3d9f65f78
 	"image_helper.h"
 	<stdlib.h>
 	<math.h>
 
+<<<<<<< HEAD
 1494052618 c:\users\adesu\desktop\grafika\grafika_itb\tugas9grafika\tugas9grafika\src\image_helper.h
 
 1494052618 source:c:\users\adesu\desktop\grafika\grafika_itb\tugas9grafika\tugas9grafika\src\soil.c
+=======
+1215494008 c:\users\kristianto\desktop\grafika_itb\tugas9grafika\tugas9grafika\src\image_helper.h
+
+1215494008 source:c:\users\kristianto\desktop\grafika_itb\tugas9grafika\tugas9grafika\src\soil.c
+>>>>>>> d508d0ad1dd80eacddc1ee755f3e53c3d9f65f78
 	<windows.h>
 	<wingdi.h>
 	<GL/gl.h>
@@ -410,12 +426,21 @@
 	<stdlib.h>
 	<string.h>
 
+<<<<<<< HEAD
 1494052618 c:\users\adesu\desktop\grafika\grafika_itb\tugas9grafika\tugas9grafika\src\soil.h
 
 1494052618 c:\users\adesu\desktop\grafika\grafika_itb\tugas9grafika\tugas9grafika\src\stb_image_aug.h
 	<stdio.h>
 
 1494052618 source:c:\users\adesu\desktop\grafika\grafika_itb\tugas9grafika\tugas9grafika\src\stb_image_aug.c
+=======
+1215494008 c:\users\kristianto\desktop\grafika_itb\tugas9grafika\tugas9grafika\src\soil.h
+
+1215494008 c:\users\kristianto\desktop\grafika_itb\tugas9grafika\tugas9grafika\src\stb_image_aug.h
+	<stdio.h>
+
+1215494008 source:c:\users\kristianto\desktop\grafika_itb\tugas9grafika\tugas9grafika\src\stb_image_aug.c
+>>>>>>> d508d0ad1dd80eacddc1ee755f3e53c3d9f65f78
 	"stb_image_aug.h"
 	<math.h>
 	<string.h>
@@ -427,7 +452,59 @@
 	"stbi_DDS_aug.h"
 	"stbi_DDS_aug_c.h"
 
+<<<<<<< HEAD
 1494052618 c:\users\adesu\desktop\grafika\grafika_itb\tugas9grafika\tugas9grafika\src\stbi_dds_aug.h
 
 1494052618 c:\users\adesu\desktop\grafika\grafika_itb\tugas9grafika\tugas9grafika\src\stbi_dds_aug_c.h
+=======
+1215494008 c:\users\kristianto\desktop\grafika_itb\tugas9grafika\tugas9grafika\src\stbi_dds_aug.h
+
+1215494008 c:\users\kristianto\desktop\grafika_itb\tugas9grafika\tugas9grafika\src\stbi_dds_aug_c.h
+
+1494067714 source:c:\users\kristianto\desktop\grafika_itb\tugas9grafika\tugas9grafika\src\main.cpp
+	<GLUT/glut.h>
+	<GL/glut.h>
+	<iostream>
+	<stdlib.h>
+	"SOIL.h"
+	<GLFW/glfw3.h>
+	<GLFW/glfw3native.h>
+
+1471481560 c:\program files (x86)\codeblocks\mingw\include\glfw\glfw3.h
+	<stddef.h>
+	<stdint.h>
+	<OpenGL/gl3.h>
+	<OpenGL/gl3ext.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<GL/glcorearb.h>
+	<GLES/gl.h>
+	<GLES/glext.h>
+	<GLES2/gl2.h>
+	<GLES2/gl2ext.h>
+	<GLES3/gl3.h>
+	<GLES2/gl2ext.h>
+	<GLES3/gl31.h>
+	<GLES2/gl2ext.h>
+	<vulkan/vulkan.h>
+	<GL/gl.h>
+	<GL/glext.h>
+	<GL/glu.h>
+
+1341006776 c:\program files (x86)\codeblocks\mingw\include\stdint.h
+	<stddef.h>
+
+1301111164 c:\program files (x86)\codeblocks\mingw\include\gl\glext.h
+	<windows.h>
+
+1471481560 c:\program files (x86)\codeblocks\mingw\include\glfw\glfw3native.h
+	<windows.h>
+	<ApplicationServices/ApplicationServices.h>
+	<X11/Xlib.h>
+	<X11/extensions/Xrandr.h>
+	<wayland-client.h>
+	<mir_toolkit/mir_client_library.h>
+	<GL/glx.h>
+	<EGL/egl.h>
+>>>>>>> d508d0ad1dd80eacddc1ee755f3e53c3d9f65f78
 
