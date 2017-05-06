@@ -603,6 +603,7 @@ static void display(void)
     printBuilding(ccTimur,6);
     printBuilding(hmtl,2);
     printBuilding(pln,2);
+
     printBuilding(tvst,3);
     printBuilding(oktagon,3);
     printBuilding(gkuBarat,4);
@@ -611,6 +612,7 @@ static void display(void)
     printBuilding(albar,2);
     printBuilding(atasnyabengkok2,3);
     printBuilding(bengkok2,2);
+
     printBuilding(bengkok1,2);
     printBuilding(labbiratas,3);
     printBuilding(labbirbawah,3);
@@ -619,6 +621,7 @@ static void display(void)
     printBuilding(labmetalurgi,2);
     printBuilding(hmsutara2,2);
     printBuilding(hmsutara1,2);
+
     printBuilding(hmsselatan,2);
     printBuilding(hms,2);
     printBuilding(doping,2);
