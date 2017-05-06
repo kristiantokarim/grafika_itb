@@ -1378,6 +1378,302 @@ void displayBengkok(Building building,int h){
     glEnd();
 }
 
+void displayHMSSelatan(Building building,int h){
+    GLuint this_texture[4];
+    this_texture[0] = SOIL_load_OGL_texture (
+        (PATH+"img\\sebelahbengkok.png").c_str(), //pake yang altim lebih bagus
+        SOIL_LOAD_AUTO,
+        SOIL_CREATE_NEW_ID,
+        SOIL_FLAG_MIPMAPS | SOIL_FLAG_POWER_OF_TWO | SOIL_FLAG_DDS_LOAD_DIRECT
+    );
+     cout << SOIL_last_result() << endl;
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture[0]);
+
+    glBegin(GL_POLYGON);
+        for (int i = 0 ; i < building.pointsLength ; i++) {
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z);
+        }
+    glEnd();
+    for (int i = 0 ; i < building.pointsLength ; i++) {
+        glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, this_texture[0]);
+
+        glBegin(GL_POLYGON);
+            glTexCoord3f(0.0, 1.0, 0.0);
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z);
+            glTexCoord3f(1.0, 1.0, 0.0);
+            glVertex3f(building.points[(i+1)%building.pointsLength].x, building.points[(i+1)%building.pointsLength].y, building.points[(i+1)%building.pointsLength].z);
+            glTexCoord3f(1.0, 0.0, 0.0);
+            glVertex3f(building.points[(i+1)%building.pointsLength].x, building.points[(i+1)%building.pointsLength].y, building.points[(i+1)%building.pointsLength].z+h);
+            glTexCoord3f(0.0, 0.0, 0.0);
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z+h);
+        glEnd();
+        glDisable(GL_TEXTURE_2D);
+    }
+    glBegin(GL_POLYGON);
+        for (int i = 0 ; i < building.pointsLength ; i++) {
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z+h);
+        }
+    glEnd();
+}
+
+void displayDoping(Building building,int h){
+    GLuint this_texture[4];
+    this_texture[0] = SOIL_load_OGL_texture (
+        (PATH+"img\\doping\\selatan.png").c_str(), //pake yang altim lebih bagus
+        SOIL_LOAD_AUTO,
+        SOIL_CREATE_NEW_ID,
+        SOIL_FLAG_MIPMAPS | SOIL_FLAG_POWER_OF_TWO | SOIL_FLAG_DDS_LOAD_DIRECT
+    );
+     cout << SOIL_last_result() << endl;
+    this_texture[1] = SOIL_load_OGL_texture (
+        (PATH+"img\\doping\\barat.png").c_str(),
+        SOIL_LOAD_AUTO,
+        SOIL_CREATE_NEW_ID,
+        SOIL_FLAG_MIPMAPS | SOIL_FLAG_POWER_OF_TWO | SOIL_FLAG_DDS_LOAD_DIRECT
+    );
+    cout << SOIL_last_result() << endl;
+    this_texture[2] = SOIL_load_OGL_texture (
+        (PATH+"img\\doping\\selatan.png").c_str(),
+        SOIL_LOAD_AUTO,
+        SOIL_CREATE_NEW_ID,
+        SOIL_FLAG_MIPMAPS | SOIL_FLAG_POWER_OF_TWO | SOIL_FLAG_DDS_LOAD_DIRECT
+    );
+     cout << SOIL_last_result() << endl;
+    this_texture[3] = SOIL_load_OGL_texture (
+        (PATH+"img\\doping\\barat.png").c_str(), //sama kayak texture[1], cuma males ngedit if-nya
+        SOIL_LOAD_AUTO,
+        SOIL_CREATE_NEW_ID,
+        SOIL_FLAG_MIPMAPS | SOIL_FLAG_POWER_OF_TWO | SOIL_FLAG_DDS_LOAD_DIRECT
+    );
+    cout << SOIL_last_result() << endl;
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture[0]);
+
+    glBegin(GL_POLYGON);
+        for (int i = 0 ; i < building.pointsLength ; i++) {
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z);
+        }
+    glEnd();
+    for (int i = 0 ; i < building.pointsLength ; i++) {
+        glEnable(GL_TEXTURE_2D);
+        if ( i  == 0){
+          glBindTexture(GL_TEXTURE_2D, this_texture[0]);
+        } else if (i==1) {
+            glBindTexture(GL_TEXTURE_2D, this_texture[1]);
+        } else if (i==2) {
+            glBindTexture(GL_TEXTURE_2D, this_texture[2]);
+        } else {
+            glBindTexture(GL_TEXTURE_2D, this_texture[3]);
+        }
+        glBegin(GL_POLYGON);
+            glTexCoord3f(0.0, 1.0, 0.0);
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z);
+            glTexCoord3f(1.0, 1.0, 0.0);
+            glVertex3f(building.points[(i+1)%building.pointsLength].x, building.points[(i+1)%building.pointsLength].y, building.points[(i+1)%building.pointsLength].z);
+            glTexCoord3f(1.0, 0.0, 0.0);
+            glVertex3f(building.points[(i+1)%building.pointsLength].x, building.points[(i+1)%building.pointsLength].y, building.points[(i+1)%building.pointsLength].z+h);
+            glTexCoord3f(0.0, 0.0, 0.0);
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z+h);
+        glEnd();
+        glDisable(GL_TEXTURE_2D);
+    }
+    glBegin(GL_POLYGON);
+        for (int i = 0 ; i < building.pointsLength ; i++) {
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z+h);
+        }
+    glEnd();
+}
+
+void displayGkuTimur(Building building,int h){
+    GLuint this_texture[4];
+    this_texture[0] = SOIL_load_OGL_texture (
+        (PATH+"img\\gkutimur\\selatan.png").c_str(), //pake yang altim lebih bagus
+        SOIL_LOAD_AUTO,
+        SOIL_CREATE_NEW_ID,
+        SOIL_FLAG_MIPMAPS | SOIL_FLAG_POWER_OF_TWO | SOIL_FLAG_DDS_LOAD_DIRECT
+    );
+     cout << SOIL_last_result() << endl;
+    this_texture[1] = SOIL_load_OGL_texture (
+        (PATH+"img\\gkutimur\\barat.png").c_str(),
+        SOIL_LOAD_AUTO,
+        SOIL_CREATE_NEW_ID,
+        SOIL_FLAG_MIPMAPS | SOIL_FLAG_POWER_OF_TWO | SOIL_FLAG_DDS_LOAD_DIRECT
+    );
+    cout << SOIL_last_result() << endl;
+    this_texture[2] = SOIL_load_OGL_texture (
+        (PATH+"img\\gkutimur\\sampingbelakang.png").c_str(),
+        SOIL_LOAD_AUTO,
+        SOIL_CREATE_NEW_ID,
+        SOIL_FLAG_MIPMAPS | SOIL_FLAG_POWER_OF_TWO | SOIL_FLAG_DDS_LOAD_DIRECT
+    );
+     cout << SOIL_last_result() << endl;
+    this_texture[3] = SOIL_load_OGL_texture (
+        (PATH+"img\\gkutimur\\barat.png").c_str(), //sama kayak texture[1], cuma males ngedit if-nya
+        SOIL_LOAD_AUTO,
+        SOIL_CREATE_NEW_ID,
+        SOIL_FLAG_MIPMAPS | SOIL_FLAG_POWER_OF_TWO | SOIL_FLAG_DDS_LOAD_DIRECT
+    );
+    cout << SOIL_last_result() << endl;
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture[0]);
+
+    glBegin(GL_POLYGON);
+        for (int i = 0 ; i < building.pointsLength ; i++) {
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z);
+        }
+    glEnd();
+    for (int i = 0 ; i < building.pointsLength ; i++) {
+        glEnable(GL_TEXTURE_2D);
+        if ( i  == 0){
+          glBindTexture(GL_TEXTURE_2D, this_texture[0]);
+        } else if (i==1) {
+            glBindTexture(GL_TEXTURE_2D, this_texture[1]);
+        } else if (i==2) {
+            glBindTexture(GL_TEXTURE_2D, this_texture[2]);
+        } else {
+            glBindTexture(GL_TEXTURE_2D, this_texture[3]);
+        }
+        glBegin(GL_POLYGON);
+            glTexCoord3f(0.0, 1.0, 0.0);
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z);
+            glTexCoord3f(1.0, 1.0, 0.0);
+            glVertex3f(building.points[(i+1)%building.pointsLength].x, building.points[(i+1)%building.pointsLength].y, building.points[(i+1)%building.pointsLength].z);
+            glTexCoord3f(1.0, 0.0, 0.0);
+            glVertex3f(building.points[(i+1)%building.pointsLength].x, building.points[(i+1)%building.pointsLength].y, building.points[(i+1)%building.pointsLength].z+h);
+            glTexCoord3f(0.0, 0.0, 0.0);
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z+h);
+        glEnd();
+        glDisable(GL_TEXTURE_2D);
+    }
+    glBegin(GL_POLYGON);
+        for (int i = 0 ; i < building.pointsLength ; i++) {
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z+h);
+        }
+    glEnd();
+}
+
+void displayKimia(Building building,int h){
+    GLuint this_texture[4];
+    this_texture[0] = SOIL_load_OGL_texture (
+        (PATH+"img\\kimia.png").c_str(), //pake yang altim lebih bagus
+        SOIL_LOAD_AUTO,
+        SOIL_CREATE_NEW_ID,
+        SOIL_FLAG_MIPMAPS | SOIL_FLAG_POWER_OF_TWO | SOIL_FLAG_DDS_LOAD_DIRECT
+    );
+     cout << SOIL_last_result() << endl;
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture[0]);
+
+    glBegin(GL_POLYGON);
+        for (int i = 0 ; i < building.pointsLength ; i++) {
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z);
+        }
+    glEnd();
+    for (int i = 0 ; i < building.pointsLength ; i++) {
+        glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, this_texture[0]);
+
+        glBegin(GL_POLYGON);
+            glTexCoord3f(0.0, 1.0, 0.0);
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z);
+            glTexCoord3f(1.0, 1.0, 0.0);
+            glVertex3f(building.points[(i+1)%building.pointsLength].x, building.points[(i+1)%building.pointsLength].y, building.points[(i+1)%building.pointsLength].z);
+            glTexCoord3f(1.0, 0.0, 0.0);
+            glVertex3f(building.points[(i+1)%building.pointsLength].x, building.points[(i+1)%building.pointsLength].y, building.points[(i+1)%building.pointsLength].z+h);
+            glTexCoord3f(0.0, 0.0, 0.0);
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z+h);
+        glEnd();
+        glDisable(GL_TEXTURE_2D);
+    }
+    glBegin(GL_POLYGON);
+        for (int i = 0 ; i < building.pointsLength ; i++) {
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z+h);
+        }
+    glEnd();
+}
+
+void displayHms(Building building,int h){
+    GLuint this_texture[4];
+    this_texture[0] = SOIL_load_OGL_texture (
+        (PATH+"img\\sebelahbengkok.png").c_str(), //pake yang altim lebih bagus
+        SOIL_LOAD_AUTO,
+        SOIL_CREATE_NEW_ID,
+        SOIL_FLAG_MIPMAPS | SOIL_FLAG_POWER_OF_TWO | SOIL_FLAG_DDS_LOAD_DIRECT
+    );
+     cout << SOIL_last_result() << endl;
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture[0]);
+
+    glBegin(GL_POLYGON);
+        for (int i = 0 ; i < building.pointsLength ; i++) {
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z);
+        }
+    glEnd();
+    for (int i = 0 ; i < building.pointsLength ; i++) {
+        glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, this_texture[0]);
+
+        glBegin(GL_POLYGON);
+            glTexCoord3f(0.0, 1.0, 0.0);
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z);
+            glTexCoord3f(1.0, 1.0, 0.0);
+            glVertex3f(building.points[(i+1)%building.pointsLength].x, building.points[(i+1)%building.pointsLength].y, building.points[(i+1)%building.pointsLength].z);
+            glTexCoord3f(1.0, 0.0, 0.0);
+            glVertex3f(building.points[(i+1)%building.pointsLength].x, building.points[(i+1)%building.pointsLength].y, building.points[(i+1)%building.pointsLength].z+h);
+            glTexCoord3f(0.0, 0.0, 0.0);
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z+h);
+        glEnd();
+        glDisable(GL_TEXTURE_2D);
+    }
+    glBegin(GL_POLYGON);
+        for (int i = 0 ; i < building.pointsLength ; i++) {
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z+h);
+        }
+    glEnd();
+}
+
+void displayFttm(Building building,int h){
+    GLuint this_texture[4];
+    this_texture[0] = SOIL_load_OGL_texture (
+        (PATH+"img\\geomatika.png").c_str(), //pake yang altim lebih bagus
+        SOIL_LOAD_AUTO,
+        SOIL_CREATE_NEW_ID,
+        SOIL_FLAG_MIPMAPS | SOIL_FLAG_POWER_OF_TWO | SOIL_FLAG_DDS_LOAD_DIRECT
+    );
+     cout << SOIL_last_result() << endl;
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture[0]);
+
+    glBegin(GL_POLYGON);
+        for (int i = 0 ; i < building.pointsLength ; i++) {
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z);
+        }
+    glEnd();
+    for (int i = 0 ; i < building.pointsLength ; i++) {
+        glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, this_texture[0]);
+
+        glBegin(GL_POLYGON);
+            glTexCoord3f(0.0, 1.0, 0.0);
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z);
+            glTexCoord3f(1.0, 1.0, 0.0);
+            glVertex3f(building.points[(i+1)%building.pointsLength].x, building.points[(i+1)%building.pointsLength].y, building.points[(i+1)%building.pointsLength].z);
+            glTexCoord3f(1.0, 0.0, 0.0);
+            glVertex3f(building.points[(i+1)%building.pointsLength].x, building.points[(i+1)%building.pointsLength].y, building.points[(i+1)%building.pointsLength].z+h);
+            glTexCoord3f(0.0, 0.0, 0.0);
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z+h);
+        glEnd();
+        glDisable(GL_TEXTURE_2D);
+    }
+    glBegin(GL_POLYGON);
+        for (int i = 0 ; i < building.pointsLength ; i++) {
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z+h);
+        }
+    glEnd();
+}
+
 /////////////////////////////////////////////////////////////////
 
 
@@ -1409,14 +1705,14 @@ static void display(void)
     displayPln(pln,2);
 
     //Dyas
-    displayTvst(tvst,3);
+    /*displayTvst(tvst,3);
     displayOktagon(oktagon,3);
     displayGkuBarat(gkuBarat,4);
     displayPau(pau,3);
     displayAltim(altim,2);
     displayAlbar(albar,2);
     displayBengkok(atasnyabengkok2,3);
-    displayBengkok(bengkok2,2);
+    displayBengkok(bengkok2,2);*/
 
     //Ade
     /*printBuilding(bengkok1,2);
@@ -1433,13 +1729,12 @@ static void display(void)
     printBuilding(hmsutara1,2);*/
 
     //Ari
-    /*printBuilding(hmsselatan,2);
-    printBuilding(hms,2);
-    printBuilding(doping,2);
-    printBuilding(gkutimur,2);
-    printBuilding(fttm,2);
-    printBuilding(amisca,2);
-    printBuilding(doping,2);*/
+    displayHMSSelatan(hmsselatan,2);
+    displayHms(hms,2);
+    displayGkuTimur(gkutimur,2);
+    displayFttm(fttm,2);
+    displayKimia(amisca,2);
+    displayDoping(doping,2);
     glutSwapBuffers();
 }
 
@@ -1544,7 +1839,7 @@ int main(int argc, char *argv[])
     glutInitWindowPosition(50, 50);
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
 
-    glutCreateWindow("Xiaomi Mi4i");
+    glutCreateWindow("Grafika");
 
     initGL();
 
