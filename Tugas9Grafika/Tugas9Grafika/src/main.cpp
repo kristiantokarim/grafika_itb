@@ -1697,12 +1697,6 @@ void displayLabbir(Building building,int h){
         glEnable(GL_TEXTURE_2D);
         if ( i  == 0){
           glBindTexture(GL_TEXTURE_2D, this_texture[0]);
-        } else if (i==1) {
-            glBindTexture(GL_TEXTURE_2D, this_texture[1]);
-        } else if (i==2) {
-            glBindTexture(GL_TEXTURE_2D, this_texture[2]);
-        } else {
-            glBindTexture(GL_TEXTURE_2D, this_texture[3]);
         }
         glBegin(GL_POLYGON);
             glTexCoord3f(0.0, 1.0, 0.0);
@@ -1740,14 +1734,14 @@ void displayDepanaltim(Building building,int h){
     );
     cout << SOIL_last_result() << endl;
     this_texture[2] = SOIL_load_OGL_texture (
-        (PATH+"img\\doping\\utara.png").c_str(),
+        (PATH+"img\\altim\\utara.png").c_str(),
         SOIL_LOAD_AUTO,
         SOIL_CREATE_NEW_ID,
         SOIL_FLAG_MIPMAPS | SOIL_FLAG_POWER_OF_TWO | SOIL_FLAG_DDS_LOAD_DIRECT
     );
      cout << SOIL_last_result() << endl;
     this_texture[3] = SOIL_load_OGL_texture (
-        (PATH+"img\\doping\\utara.png").c_str(), //sama kayak texture[1], cuma males ngedit if-nya
+        (PATH+"img\\altim\\utara.png").c_str(), //sama kayak texture[1], cuma males ngedit if-nya
         SOIL_LOAD_AUTO,
         SOIL_CREATE_NEW_ID,
         SOIL_FLAG_MIPMAPS | SOIL_FLAG_POWER_OF_TWO | SOIL_FLAG_DDS_LOAD_DIRECT
@@ -1880,12 +1874,6 @@ void displayLabmetalurgi(Building building,int h){
         glEnable(GL_TEXTURE_2D);
         if ( i  == 0){
           glBindTexture(GL_TEXTURE_2D, this_texture[0]);
-        } else if (i==1) {
-            glBindTexture(GL_TEXTURE_2D, this_texture[1]);
-        } else if (i==2) {
-            glBindTexture(GL_TEXTURE_2D, this_texture[2]);
-        } else {
-            glBindTexture(GL_TEXTURE_2D, this_texture[3]);
         }
         glBegin(GL_POLYGON);
             glTexCoord3f(0.0, 1.0, 0.0);
