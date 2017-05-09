@@ -627,7 +627,15 @@ GLuint textureCadl[4];
 GLuint textureMetalurgi[1];
 GLuint textureHmsutara1[4];
 GLuint textureHmsutara2[4];
-
+GLuint texturePerpus[1];
+GLuint textureTimurJauhAtas[1];
+GLuint textureTimurJauhBawah[1];
+GLuint texturePLN2[1];
+GLuint textureFisika[1];
+GLuint textureArsiPlano[1];
+GLuint textureSR[1];
+GLuint textureMesin[1];
+GLuint textureGedungBaratLaut[1];
 void initTexture(){
     textureLabtekV[0] = SOIL_load_OGL_texture (
         (PATH+"img\\labtek56\\timur.png").c_str(),
@@ -1039,6 +1047,60 @@ void initTexture(){
     );
     textureHmsutara2[3] = SOIL_load_OGL_texture (
         (PATH+"img\\aulatimur\\selatan kiri.png").c_str(), //sama kayak texture[1], cuma males ngedit if-nya
+        SOIL_LOAD_AUTO,
+        SOIL_CREATE_NEW_ID,
+        SOIL_FLAG_MIPMAPS | SOIL_FLAG_POWER_OF_TWO | SOIL_FLAG_DDS_LOAD_DIRECT
+    );
+    texturePerpus[0] = SOIL_load_OGL_texture (
+        (PATH+"img\\perpus\\baratjuga.png").c_str(), //sama kayak texture[1], cuma males ngedit if-nya
+        SOIL_LOAD_AUTO,
+        SOIL_CREATE_NEW_ID,
+        SOIL_FLAG_MIPMAPS | SOIL_FLAG_POWER_OF_TWO | SOIL_FLAG_DDS_LOAD_DIRECT
+    );
+    textureTimurJauhAtas[0] = SOIL_load_OGL_texture (
+        (PATH+"img\\labtekvii\\utara.png").c_str(), //sama kayak texture[1], cuma males ngedit if-nya
+        SOIL_LOAD_AUTO,
+        SOIL_CREATE_NEW_ID,
+        SOIL_FLAG_MIPMAPS | SOIL_FLAG_POWER_OF_TWO | SOIL_FLAG_DDS_LOAD_DIRECT
+    );
+    textureTimurJauhBawah[0] = SOIL_load_OGL_texture (
+        (PATH+"img\\labtekvii\\utara.png").c_str(), //sama kayak texture[1], cuma males ngedit if-nya
+        SOIL_LOAD_AUTO,
+        SOIL_CREATE_NEW_ID,
+        SOIL_FLAG_MIPMAPS | SOIL_FLAG_POWER_OF_TWO | SOIL_FLAG_DDS_LOAD_DIRECT
+    );
+    texturePLN2[0] = SOIL_load_OGL_texture (
+        (PATH+"img\\pln.png").c_str(), //sama kayak texture[1], cuma males ngedit if-nya
+        SOIL_LOAD_AUTO,
+        SOIL_CREATE_NEW_ID,
+        SOIL_FLAG_MIPMAPS | SOIL_FLAG_POWER_OF_TWO | SOIL_FLAG_DDS_LOAD_DIRECT
+    );
+    textureFisika[0] = SOIL_load_OGL_texture (
+        (PATH+"img\\labtekvii\\utara.png").c_str(), //sama kayak texture[1], cuma males ngedit if-nya
+        SOIL_LOAD_AUTO,
+        SOIL_CREATE_NEW_ID,
+        SOIL_FLAG_MIPMAPS | SOIL_FLAG_POWER_OF_TWO | SOIL_FLAG_DDS_LOAD_DIRECT
+    );
+    textureArsiPlano[0] = SOIL_load_OGL_texture (
+        (PATH+"img\\labtekvii\\utara.png").c_str(), //sama kayak texture[1], cuma males ngedit if-nya
+        SOIL_LOAD_AUTO,
+        SOIL_CREATE_NEW_ID,
+        SOIL_FLAG_MIPMAPS | SOIL_FLAG_POWER_OF_TWO | SOIL_FLAG_DDS_LOAD_DIRECT
+    );
+    textureSR[0] = SOIL_load_OGL_texture (
+        (PATH+"img\\labtekvii\\utara.png").c_str(), //sama kayak texture[1], cuma males ngedit if-nya
+        SOIL_LOAD_AUTO,
+        SOIL_CREATE_NEW_ID,
+        SOIL_FLAG_MIPMAPS | SOIL_FLAG_POWER_OF_TWO | SOIL_FLAG_DDS_LOAD_DIRECT
+    );
+    textureMesin[0] = SOIL_load_OGL_texture (
+        (PATH+"img\\mesin.png").c_str(), //sama kayak texture[1], cuma males ngedit if-nya
+        SOIL_LOAD_AUTO,
+        SOIL_CREATE_NEW_ID,
+        SOIL_FLAG_MIPMAPS | SOIL_FLAG_POWER_OF_TWO | SOIL_FLAG_DDS_LOAD_DIRECT
+    );
+    textureGedungBaratLaut[0] = SOIL_load_OGL_texture (
+        (PATH+"img\\labtekvii\\utara.png").c_str(), //sama kayak texture[1], cuma males ngedit if-nya
         SOIL_LOAD_AUTO,
         SOIL_CREATE_NEW_ID,
         SOIL_FLAG_MIPMAPS | SOIL_FLAG_POWER_OF_TWO | SOIL_FLAG_DDS_LOAD_DIRECT
@@ -2064,6 +2126,286 @@ void displayHmsutara2(Building building,int h){
     glEnd();
 }
 
+//KK
+void displayPerpus(Building building, int h){
+    glEnable(GL_TEXTURE_2D);
+
+    glBegin(GL_POLYGON);
+        for (int i = 0 ; i < building.pointsLength ; i++) {
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z);
+        }
+    glEnd();
+    for (int i = 0 ; i < building.pointsLength ; i++) {
+        glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, texturePerpus[0]);
+
+        glBegin(GL_POLYGON);
+            glTexCoord3f(0.0, 1.0, 0.0);
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z);
+            glTexCoord3f(1.0, 1.0, 0.0);
+            glVertex3f(building.points[(i+1)%building.pointsLength].x, building.points[(i+1)%building.pointsLength].y, building.points[(i+1)%building.pointsLength].z);
+            glTexCoord3f(1.0, 0.0, 0.0);
+            glVertex3f(building.points[(i+1)%building.pointsLength].x, building.points[(i+1)%building.pointsLength].y, building.points[(i+1)%building.pointsLength].z+h);
+            glTexCoord3f(0.0, 0.0, 0.0);
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z+h);
+        glEnd();
+        glDisable(GL_TEXTURE_2D);
+    }
+    glBegin(GL_POLYGON);
+        for (int i = 0 ; i < building.pointsLength ; i++) {
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z+h);
+        }
+    glEnd();
+}
+
+void displaytimurJauhAtas(Building building, int h){
+    glEnable(GL_TEXTURE_2D);
+
+    glBegin(GL_POLYGON);
+        for (int i = 0 ; i < building.pointsLength ; i++) {
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z);
+        }
+    glEnd();
+    for (int i = 0 ; i < building.pointsLength ; i++) {
+        glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, textureTimurJauhAtas[0]);
+
+        glBegin(GL_POLYGON);
+            glTexCoord3f(0.0, 1.0, 0.0);
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z);
+            glTexCoord3f(1.0, 1.0, 0.0);
+            glVertex3f(building.points[(i+1)%building.pointsLength].x, building.points[(i+1)%building.pointsLength].y, building.points[(i+1)%building.pointsLength].z);
+            glTexCoord3f(1.0, 0.0, 0.0);
+            glVertex3f(building.points[(i+1)%building.pointsLength].x, building.points[(i+1)%building.pointsLength].y, building.points[(i+1)%building.pointsLength].z+h);
+            glTexCoord3f(0.0, 0.0, 0.0);
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z+h);
+        glEnd();
+        glDisable(GL_TEXTURE_2D);
+    }
+    glBegin(GL_POLYGON);
+        for (int i = 0 ; i < building.pointsLength ; i++) {
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z+h);
+        }
+    glEnd();
+}
+
+void displaytimurJauhBawah(Building building, int h){
+    glEnable(GL_TEXTURE_2D);
+
+    glBegin(GL_POLYGON);
+        for (int i = 0 ; i < building.pointsLength ; i++) {
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z);
+        }
+    glEnd();
+    for (int i = 0 ; i < building.pointsLength ; i++) {
+        glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, textureTimurJauhBawah[0]);
+
+        glBegin(GL_POLYGON);
+            glTexCoord3f(0.0, 1.0, 0.0);
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z);
+            glTexCoord3f(1.0, 1.0, 0.0);
+            glVertex3f(building.points[(i+1)%building.pointsLength].x, building.points[(i+1)%building.pointsLength].y, building.points[(i+1)%building.pointsLength].z);
+            glTexCoord3f(1.0, 0.0, 0.0);
+            glVertex3f(building.points[(i+1)%building.pointsLength].x, building.points[(i+1)%building.pointsLength].y, building.points[(i+1)%building.pointsLength].z+h);
+            glTexCoord3f(0.0, 0.0, 0.0);
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z+h);
+        glEnd();
+        glDisable(GL_TEXTURE_2D);
+    }
+    glBegin(GL_POLYGON);
+        for (int i = 0 ; i < building.pointsLength ; i++) {
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z+h);
+        }
+    glEnd();
+}
+
+void displayPLN2(Building building, int h){
+    glEnable(GL_TEXTURE_2D);
+
+    glBegin(GL_POLYGON);
+        for (int i = 0 ; i < building.pointsLength ; i++) {
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z);
+        }
+    glEnd();
+    for (int i = 0 ; i < building.pointsLength ; i++) {
+        glEnable(GL_TEXTURE_2D);
+                glBindTexture(GL_TEXTURE_2D, texturePLN2[0]);
+
+        glBegin(GL_POLYGON);
+            glTexCoord3f(0.0, 1.0, 0.0);
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z);
+            glTexCoord3f(1.0, 1.0, 0.0);
+            glVertex3f(building.points[(i+1)%building.pointsLength].x, building.points[(i+1)%building.pointsLength].y, building.points[(i+1)%building.pointsLength].z);
+            glTexCoord3f(1.0, 0.0, 0.0);
+            glVertex3f(building.points[(i+1)%building.pointsLength].x, building.points[(i+1)%building.pointsLength].y, building.points[(i+1)%building.pointsLength].z+h);
+            glTexCoord3f(0.0, 0.0, 0.0);
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z+h);
+        glEnd();
+        glDisable(GL_TEXTURE_2D);
+    }
+    glBegin(GL_POLYGON);
+        for (int i = 0 ; i < building.pointsLength ; i++) {
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z+h);
+        }
+    glEnd();
+}
+
+void displayFisika(Building building, int h){
+    glEnable(GL_TEXTURE_2D);
+
+    glBegin(GL_POLYGON);
+        for (int i = 0 ; i < building.pointsLength ; i++) {
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z);
+        }
+    glEnd();
+    for (int i = 0 ; i < building.pointsLength ; i++) {
+        glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, textureFisika[0]);
+
+        glBegin(GL_POLYGON);
+            glTexCoord3f(0.0, 1.0, 0.0);
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z);
+            glTexCoord3f(1.0, 1.0, 0.0);
+            glVertex3f(building.points[(i+1)%building.pointsLength].x, building.points[(i+1)%building.pointsLength].y, building.points[(i+1)%building.pointsLength].z);
+            glTexCoord3f(1.0, 0.0, 0.0);
+            glVertex3f(building.points[(i+1)%building.pointsLength].x, building.points[(i+1)%building.pointsLength].y, building.points[(i+1)%building.pointsLength].z+h);
+            glTexCoord3f(0.0, 0.0, 0.0);
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z+h);
+        glEnd();
+        glDisable(GL_TEXTURE_2D);
+    }
+    glBegin(GL_POLYGON);
+        for (int i = 0 ; i < building.pointsLength ; i++) {
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z+h);
+        }
+    glEnd();
+}
+
+void displayArsiPlano(Building building, int h){
+    glEnable(GL_TEXTURE_2D);
+
+    glBegin(GL_POLYGON);
+        for (int i = 0 ; i < building.pointsLength ; i++) {
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z);
+        }
+    glEnd();
+    for (int i = 0 ; i < building.pointsLength ; i++) {
+        glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, textureArsiPlano[0]);
+
+        glBegin(GL_POLYGON);
+            glTexCoord3f(0.0, 1.0, 0.0);
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z);
+            glTexCoord3f(1.0, 1.0, 0.0);
+            glVertex3f(building.points[(i+1)%building.pointsLength].x, building.points[(i+1)%building.pointsLength].y, building.points[(i+1)%building.pointsLength].z);
+            glTexCoord3f(1.0, 0.0, 0.0);
+            glVertex3f(building.points[(i+1)%building.pointsLength].x, building.points[(i+1)%building.pointsLength].y, building.points[(i+1)%building.pointsLength].z+h);
+            glTexCoord3f(0.0, 0.0, 0.0);
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z+h);
+        glEnd();
+        glDisable(GL_TEXTURE_2D);
+    }
+    glBegin(GL_POLYGON);
+        for (int i = 0 ; i < building.pointsLength ; i++) {
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z+h);
+        }
+    glEnd();
+}
+
+void displaySR(Building building, int h){
+    glEnable(GL_TEXTURE_2D);
+
+    glBegin(GL_POLYGON);
+        for (int i = 0 ; i < building.pointsLength ; i++) {
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z);
+        }
+    glEnd();
+    for (int i = 0 ; i < building.pointsLength ; i++) {
+        glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, textureSR[0]);
+
+        glBegin(GL_POLYGON);
+            glTexCoord3f(0.0, 1.0, 0.0);
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z);
+            glTexCoord3f(1.0, 1.0, 0.0);
+            glVertex3f(building.points[(i+1)%building.pointsLength].x, building.points[(i+1)%building.pointsLength].y, building.points[(i+1)%building.pointsLength].z);
+            glTexCoord3f(1.0, 0.0, 0.0);
+            glVertex3f(building.points[(i+1)%building.pointsLength].x, building.points[(i+1)%building.pointsLength].y, building.points[(i+1)%building.pointsLength].z+h);
+            glTexCoord3f(0.0, 0.0, 0.0);
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z+h);
+        glEnd();
+        glDisable(GL_TEXTURE_2D);
+    }
+    glBegin(GL_POLYGON);
+        for (int i = 0 ; i < building.pointsLength ; i++) {
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z+h);
+        }
+    glEnd();
+}
+
+void displayMesin(Building building, int h){
+    glEnable(GL_TEXTURE_2D);
+
+    glBegin(GL_POLYGON);
+        for (int i = 0 ; i < building.pointsLength ; i++) {
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z);
+        }
+    glEnd();
+    for (int i = 0 ; i < building.pointsLength ; i++) {
+        glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, textureMesin[0]);
+
+        glBegin(GL_POLYGON);
+            glTexCoord3f(0.0, 1.0, 0.0);
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z);
+            glTexCoord3f(1.0, 1.0, 0.0);
+            glVertex3f(building.points[(i+1)%building.pointsLength].x, building.points[(i+1)%building.pointsLength].y, building.points[(i+1)%building.pointsLength].z);
+            glTexCoord3f(1.0, 0.0, 0.0);
+            glVertex3f(building.points[(i+1)%building.pointsLength].x, building.points[(i+1)%building.pointsLength].y, building.points[(i+1)%building.pointsLength].z+h);
+            glTexCoord3f(0.0, 0.0, 0.0);
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z+h);
+        glEnd();
+        glDisable(GL_TEXTURE_2D);
+    }
+    glBegin(GL_POLYGON);
+        for (int i = 0 ; i < building.pointsLength ; i++) {
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z+h);
+        }
+    glEnd();
+}
+
+void displayGedungBaratLaut(Building building, int h){
+ glEnable(GL_TEXTURE_2D);
+
+    glBegin(GL_POLYGON);
+        for (int i = 0 ; i < building.pointsLength ; i++) {
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z);
+        }
+    glEnd();
+    for (int i = 0 ; i < building.pointsLength ; i++) {
+        glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, textureGedungBaratLaut[0]);
+
+        glBegin(GL_POLYGON);
+            glTexCoord3f(0.0, 1.0, 0.0);
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z);
+            glTexCoord3f(1.0, 1.0, 0.0);
+            glVertex3f(building.points[(i+1)%building.pointsLength].x, building.points[(i+1)%building.pointsLength].y, building.points[(i+1)%building.pointsLength].z);
+            glTexCoord3f(1.0, 0.0, 0.0);
+            glVertex3f(building.points[(i+1)%building.pointsLength].x, building.points[(i+1)%building.pointsLength].y, building.points[(i+1)%building.pointsLength].z+h);
+            glTexCoord3f(0.0, 0.0, 0.0);
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z+h);
+        glEnd();
+        glDisable(GL_TEXTURE_2D);
+    }
+    glBegin(GL_POLYGON);
+        for (int i = 0 ; i < building.pointsLength ; i++) {
+            glVertex3f(building.points[i].x, building.points[i].y, building.points[i].z+h);
+        }
+    glEnd();
+}
+
 static void display(void){
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -2128,6 +2470,15 @@ static void display(void){
     displayKimia(amisca,2);
     displayDoping(doping,2);
 
+    displayPerpus(perpus,3);
+    displaytimurJauhAtas(timurJauhAtas,4);
+    displaytimurJauhBawah(timurJauhBawah,4);
+    displayPLN2(pln2,2);
+    displayFisika(fisika,3);
+    displayArsiPlano(arsiPlano,2);
+    displaySR(sr,2);
+    displayMesin(mesin,2);
+    displayGedungBaratLaut(gedungBaratLaut,3);
     glutSwapBuffers();
 }
 
