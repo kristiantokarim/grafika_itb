@@ -456,15 +456,24 @@
 
 1215494008 c:\users\kristianto\desktop\grafika_itb\tugas9grafika\tugas9grafika\src\stbi_dds_aug_c.h
 
-1494345329 source:c:\users\kristianto\desktop\grafika_itb\tugas9grafika\tugas9grafika\src\main.cpp
+1494357602 source:c:\users\kristianto\desktop\grafika_itb\tugas9grafika\tugas9grafika\src\main.cpp
+	<GL/glew.h>
 	<GLUT/glut.h>
 	<GL/glut.h>
 	<iostream>
 	<stdlib.h>
 	"SOIL.h"
-	"GLFW/glfw3.h"
-	"GLFW/glfw3native.h"
 	<string>
+	<stdio.h>
+	<string>
+	<vector>
+	<iostream>
+	<fstream>
+	<algorithm>
+	<stdlib.h>
+	<string.h>
+	"common/shader.hpp"
+	"common/texture.hpp"
 
 1471481560 c:\program files (x86)\codeblocks\mingw\include\glfw\glfw3.h
 	<stddef.h>
@@ -760,4 +769,48 @@
 	<mir_toolkit/mir_client_library.h>
 	<GL/glx.h>
 	<EGL/egl.h>
+
+1469332778 c:\users\kristianto\desktop\grafika_itb\tugas9grafika\tugas9grafika\src\include\gl\glew.h
+	<stddef.h>
+	<inttypes.h>
+	<stdint.h>
+	<inttypes.h>
+	<Availability.h>
+	<OpenGL/glu.h>
+	<GL/glu.h>
+
+1341006772 c:\program files (x86)\codeblocks\mingw\include\inttypes.h
+	<_mingw.h>
+	<stdint.h>
+	<stddef.h>
+
+1475093170 c:\users\kristianto\desktop\grafika_itb\tugas9grafika\tugas9grafika\src\common\shader.hpp
+
+1344270212 c:\program files (x86)\codeblocks\mingw\include\gl\glew.h
+	<stddef.h>
+	<inttypes.h>
+	<stdint.h>
+	<inttypes.h>
+	<OpenGL/glu.h>
+	<GL/glu.h>
+
+1475093170 c:\users\kristianto\desktop\grafika_itb\tugas9grafika\tugas9grafika\src\common\texture.hpp
+
+1494349727 source:c:\users\kristianto\desktop\grafika_itb\tugas9grafika\tugas9grafika\src\common\shader.cpp
+	<stdio.h>
+	<string>
+	<vector>
+	<iostream>
+	<fstream>
+	<algorithm>
+	<stdlib.h>
+	<string.h>
+	<GL/glew.h>
+	"shader.hpp"
+
+1494357363 source:c:\users\kristianto\desktop\grafika_itb\tugas9grafika\tugas9grafika\src\common\texture.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<GL/glew.h>
 
