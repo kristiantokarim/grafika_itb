@@ -6,10 +6,10 @@
 	<stdlib.h>
 	"SOIL.h"
 
-1426324528 c:\program files (x86)\codeblocks\mingw\include\gl\glut.h
+1426299328 c:\program files (x86)\codeblocks\mingw\include\gl\glut.h
 	"freeglut_std.h"
 
-1426324528 c:\program files (x86)\codeblocks\mingw\include\gl\freeglut_std.h
+1426299328 c:\program files (x86)\codeblocks\mingw\include\gl\freeglut_std.h
 	<windows.h>
 	<EGL/egl.h>
 	<GLES/gl.h>
@@ -456,14 +456,15 @@
 
 1215494008 c:\users\kristianto\desktop\grafika_itb\tugas9grafika\tugas9grafika\src\stbi_dds_aug_c.h
 
-1494073167 source:c:\users\kristianto\desktop\grafika_itb\tugas9grafika\tugas9grafika\src\main.cpp
+1494345329 source:c:\users\kristianto\desktop\grafika_itb\tugas9grafika\tugas9grafika\src\main.cpp
 	<GLUT/glut.h>
 	<GL/glut.h>
 	<iostream>
 	<stdlib.h>
 	"SOIL.h"
-	<GLFW/glfw3.h>
-	<GLFW/glfw3native.h>
+	"GLFW/glfw3.h"
+	"GLFW/glfw3native.h"
+	<string>
 
 1471481560 c:\program files (x86)\codeblocks\mingw\include\glfw\glfw3.h
 	<stddef.h>
@@ -720,6 +721,37 @@
 	<GL/glu.h>
 
 1494120948 c:\users\adesu\desktop\grafika\grafika_itb\tugas9grafika\tugas9grafika\src\glfw\glfw3native.h
+	<windows.h>
+	<ApplicationServices/ApplicationServices.h>
+	<X11/Xlib.h>
+	<X11/extensions/Xrandr.h>
+	<wayland-client.h>
+	<mir_toolkit/mir_client_library.h>
+	<GL/glx.h>
+	<EGL/egl.h>
+
+1494141191 c:\users\kristianto\desktop\grafika_itb\tugas9grafika\tugas9grafika\src\glfw\glfw3.h
+	<stddef.h>
+	<stdint.h>
+	<OpenGL/gl3.h>
+	<OpenGL/gl3ext.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<GL/glcorearb.h>
+	<GLES/gl.h>
+	<GLES/glext.h>
+	<GLES2/gl2.h>
+	<GLES2/gl2ext.h>
+	<GLES3/gl3.h>
+	<GLES2/gl2ext.h>
+	<GLES3/gl31.h>
+	<GLES2/gl2ext.h>
+	<vulkan/vulkan.h>
+	<GL/gl.h>
+	<GL/glext.h>
+	<GL/glu.h>
+
+1494141191 c:\users\kristianto\desktop\grafika_itb\tugas9grafika\tugas9grafika\src\glfw\glfw3native.h
 	<windows.h>
 	<ApplicationServices/ApplicationServices.h>
 	<X11/Xlib.h>
